@@ -17,7 +17,7 @@ export default function Footer(props: Props) {
     if(!msg) return;
     props.sendMsg(msg);
     setMsg("");
-  } 
+  }
 
   return  <div className="header-footer footer">
             <FaUser className="chat-icon"/>

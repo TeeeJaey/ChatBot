@@ -1,10 +1,8 @@
 import React from 'react';
-import '../styles/Message.css';
 import { FaUser } from "react-icons/fa";
 import { FaRobot } from "react-icons/fa";
-
 import { GoTriangleLeft } from "react-icons/go";
-import { MessageType } from './Types';
+import { MessageType } from '../Types';
 
 type Props = {
     i:number,

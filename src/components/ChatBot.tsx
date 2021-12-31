@@ -1,36 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
-import { MessageType } from './Types'; 
+import { MessageType } from '../Types'; 
+import { BotService } from '../BotService';
 type Props = {};
 
 export default function ChatBot(props: Props) {
     
-    const initMsgList:MessageType[] = [
-        {sender:"Agent",
-        text:"Hi, How can I help you today?", 
-        time: Date.now()},
-        {sender:"User",
-        text:"This one adds a right triangle on the left, flush at the top by using .tri-right and .left-top to specify the location...", 
-        time: Date.now()}
-    ];
+    const initMsgList:MessageType[] = [];
+
     const [msgList, setMsgList] = useState(initMsgList);
+    const [showTyping, setShowTyping] = useState(false);
     
-    const sendMsg = (msg:string) => {
+    const addMsg = (msg:string, sender:string="Agent") => {
         const newMsgList:MessageType[] = [...msgList];
-        newMsgList.push({
-            sender:"User",
-            text:msg,
-            time:Date.now()
-        });
+        newMsgList.push(new MessageType(msg,sender));
         setMsgList(newMsgList);
-    }
+    };
+
+    const resetChat = () => {
+        setMsgList([]);
+    };
+
+    useEffect(() => {
+
+        setShowTyping(true);
+        if(!msgList || msgList.length == 0) {
+            BotService.startChat().then((msg:string) => {
+                addMsg(msg,"Agent");
+                setShowTyping(false);
+            })
+        }
+        else {
+            const lastMsg:MessageType = msgList[msgList.length-1];
+            if(lastMsg.sender == "Agent") {
+                setShowTyping(false);
+                return;
+            }
+            
+            BotService.getAnswer(lastMsg.text).then((msg:string) => {
+                addMsg(msg,"Agent");
+                setShowTyping(false);
+            })
+        }
+
+    },[msgList]);
 
 
     return  <div className="container">
-                <Header />
-                <Content msgList={msgList} />
-                <Footer sendMsg={(msg:string) => sendMsg(msg)} />
+                <Header resetChat={()=>resetChat()}/>
+                <Content showTyping={showTyping} msgList={msgList} />
+                <Footer sendMsg={(msg:string) => addMsg(msg,"User")} />
             </div>
 }
