@@ -1,6 +1,6 @@
 # ChatBot
 
-A chatting assistant written in React.\
+A chatting assistant written in React.
 
 ## Available Scripts
 
@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm install`
 
-Installs the required dependencies.\
+Installs the required dependencies.
 
 ### `npm start`
 
