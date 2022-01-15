@@ -1,8 +1,9 @@
 import React from 'react';
 import { FaUser } from "react-icons/fa";
 import { FaRobot } from "react-icons/fa";
-import { GoTriangleLeft } from "react-icons/go";
-import { MessageType } from '../Types';
+import { GrLinkedinOption, GrGithub } from "react-icons/gr";
+import { MessageType } from '../services/Types';
+import { MessageService } from '../services/MessageService';
 
 type Props = {
     i:number,
@@ -28,11 +29,26 @@ export default function Message(props: Props) {
   }
 
 
+  const openWebpage = (weburl:string, search:string, sec:number=0) => {
+    setTimeout(()=>{
+        window.open("//" + weburl + search, '_blank');
+    },sec);
+  }
+
   if(props.msg.sender=="Agent")
     return  <div key={props.i} className="chatbox agent"> 
               <FaRobot className="icon chat-icon"/>
-              <div className='msg'>
-                {props.msg.text}                
+              <div className='msg' >
+                {props?.msg?.text.split('\n').map((text,ind) => <div key={ind}> {text}</div>)} 
+
+              {props.msg.server == "Developer" &&
+                  <div className='msgLinks'>
+                    <GrLinkedinOption className='link linkedin' 
+                          onClick={() => openWebpage("linkedin.com/in/", "tejas-jadhav-765043110")} />
+                    <GrGithub className='link github' 
+                          onClick={() => openWebpage("github.com/", "TeeeJaey")} />
+                  </div>
+                }
                 <div className='time'> {showdate} </div>
               </div>
             </div>;

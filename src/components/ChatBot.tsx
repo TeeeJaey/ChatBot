@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
-import { MessageType } from '../Types'; 
-import { BotService } from '../BotService';
+import { MessageType } from '../services/Types'; 
+import { MessageService } from '../services/MessageService'; 
+import { BotService } from '../services/BotService';
+
 type Props = {};
 
 export default function ChatBot(props: Props) {
@@ -13,9 +15,9 @@ export default function ChatBot(props: Props) {
     const [msgList, setMsgList] = useState(initMsgList);
     const [showTyping, setShowTyping] = useState(false);
     
-    const addMsg = (msg:string, sender:string="Agent") => {
+    const addMsg = (msg:MessageType) => {
         const newMsgList:MessageType[] = [...msgList];
-        newMsgList.push(new MessageType(msg,sender));
+        newMsgList.push(msg);
         setMsgList(newMsgList);
     };
 
@@ -27,8 +29,8 @@ export default function ChatBot(props: Props) {
 
         setShowTyping(true);
         if(!msgList || msgList.length == 0) {
-            BotService.startChat().then((msg:string) => {
-                addMsg(msg,"Agent");
+            BotService.startChat().then((msg:MessageType) => {
+                addMsg(msg);
                 setShowTyping(false);
             })
         }
@@ -39,8 +41,8 @@ export default function ChatBot(props: Props) {
                 return;
             }
             
-            BotService.getAnswer(lastMsg.text).then((msg:string) => {
-                addMsg(msg,"Agent");
+            BotService.getAnswer(lastMsg.text).then((msg:MessageType) => {
+                addMsg(msg);
                 setShowTyping(false);
             })
         }
@@ -51,6 +53,6 @@ export default function ChatBot(props: Props) {
     return  <div className="container">
                 <Header resetChat={()=>resetChat()}/>
                 <Content showTyping={showTyping} msgList={msgList} />
-                <Footer sendMsg={(msg:string) => addMsg(msg,"User")} />
+                <Footer sendMsg={(msg:MessageType) => addMsg(msg)} />
             </div>
 }

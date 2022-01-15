@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Message from './Message';
 import '../styles/Content.css';
-import { MessageType } from '../Types'; 
+import { MessageType } from '../services/Types'; 
 
 const typing =  require('../images/typing.gif');
 

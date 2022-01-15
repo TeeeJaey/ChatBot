@@ -63,6 +63,28 @@
 	background-color: #dcf8c6;
 }
 
+.msgLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.msgLinks > .link {
+    padding: 0px 20px;
+    text-align: left;
+    font-size: 20px;
+    border-radius: 40px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.msgLinks > .link.linkedin {
+    color: #0a66c2;
+    border: 0.5px solid #0a66c2;
+}
+.msgLinks >.github {
+    color: black;
+    border: 0.5px solid black;
+}
+
 .chatbox.agent > .msg:after {
     left: -12px;
     right: auto;
@@ -83,3 +105,4 @@
 .chatbox.agent > .msg > .time {
     text-align:right;
 }
+

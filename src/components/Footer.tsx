@@ -1,5 +1,6 @@
 import React, { KeyboardEvent, useState } from 'react';
 import { FaUser } from "react-icons/fa";
+import { MessageService } from '../services/MessageService';
 
 type Props = {
   sendMsg:Function;
@@ -15,7 +16,8 @@ export default function Footer(props: Props) {
 
   const sendMsg = () => {
     if(!msg) return;
-    props.sendMsg(msg);
+    const message = MessageService.createUserMsg(msg);
+    props.sendMsg(message);
     setMsg("");
   }
 
