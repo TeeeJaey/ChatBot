@@ -3,7 +3,10 @@ import Message from './Message';
 import '../styles/Content.css';
 import { MessageType } from '../services/Types'; 
 
-const typing =  require('../images/typing.gif');
+//import * as img from "../images/typing.gif";
+//const typing = img.default;
+const typing =  require("../images/typing.gif");
+
 
 type Props = {
     showTyping:Boolean,

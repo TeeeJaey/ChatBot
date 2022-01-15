@@ -5,9 +5,7 @@ import { MessageService } from "./MessageService";
 
 export class BotService 
 {
-    private name: string = "ChatBot";
-
-    private static delayMsg(msg:string,server="Bot",sec:number=1000) {
+    static delayMsg(msg:string,server="Bot",sec:number=1000) {
         return new Promise<MessageType>((resolve:Function,reject:Function) => {
             setTimeout(()=>{
                 resolve(MessageService.createAgentMsg(msg,server));
@@ -15,17 +13,17 @@ export class BotService
         })
     }
 
-    private static openWebpage(weburl:string, search:string, sec:number=2000) {
+    static openWebpage(weburl:string, search:string, sec:number=2000) {
         setTimeout(()=>{
             window.open("//" + weburl + search, '_blank');
         },sec);
     }
-
-    public static startChat() {
+    
+    static startChat() {
         return this.delayMsg("Hi, How can I help you today?");
     }
 
-    public static async getAnswer(question:string) {
+    static async getAnswer(question:string) {
         question = question.replaceAll('.','');
         question = question.replaceAll('!','');
         question = question.replaceAll('?','');

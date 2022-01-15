@@ -1,12 +1,12 @@
 
 export class WikiService 
 {
-    private static extractAPIContents = (json:any) => {
+    static extractAPIContents = (json:any) => {
         const { pages } = json.query;
         return Object.keys(pages).map(id => pages[id].extract);
     };
-
-    public static async fetchData (subject: string) {
+    
+    static async fetchData (subject: string) {
         const url = "https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&exintro=true&explaintext=true&titles=" + subject;
 
 
