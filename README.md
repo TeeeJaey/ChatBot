@@ -21,5 +21,3 @@ You will also see any lint errors in the console.
 ## Some screenshots
 
 <img src="https://raw.githubusercontent.com/TeeeJaey/ChatBot/master/screens/screen.PNG" height="320"  align="left" />
-
-
