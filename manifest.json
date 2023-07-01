@@ -1,0 +1,9 @@
+{
+    "short_name": "ChatBot",
+    "name": "Simple non-AI Chat Bot",
+    "icons": [],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+}
