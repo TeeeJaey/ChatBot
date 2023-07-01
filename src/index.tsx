@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/index.css";
-import App from "./components/App";
+import ChatBot from "./components/ChatBot";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <div>
+            <ChatBot />
+        </div>
     </React.StrictMode>,
     document.getElementById("root"),
 );

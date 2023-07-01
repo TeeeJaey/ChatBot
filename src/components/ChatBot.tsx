@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
-import { MessageType } from "../services/Types";
-import { MessageService } from "../services/MessageService";
+import { Message } from "../helpers/Types";
 import { BotService } from "../services/BotService";
+import { MessageSenderType } from "../helpers/Constants";
 
-type Props = {};
+const initMsgList: Message[] = [];
 
-export default function ChatBot(props: Props) {
-    const initMsgList: MessageType[] = [];
-
+export default function ChatBot(): JSX.Element {
     const [msgList, setMsgList] = useState(initMsgList);
     const [showTyping, setShowTyping] = useState(false);
 
-    const addMsg = (msg: MessageType) => {
-        const newMsgList: MessageType[] = [...msgList];
-        newMsgList.push(msg);
-        setMsgList(newMsgList);
-    };
+    const addMsg = useCallback(
+        (msg: Message) => {
+            const newMsgList: Message[] = [...msgList];
+            newMsgList.push(msg);
+            setMsgList(newMsgList);
+        },
+        [msgList],
+    );
 
     const resetChat = () => {
         setMsgList([]);
@@ -26,30 +27,30 @@ export default function ChatBot(props: Props) {
 
     useEffect(() => {
         setShowTyping(true);
-        if (!msgList || msgList.length == 0) {
-            BotService.startChat().then((msg: MessageType) => {
+        if (!msgList || msgList.length === 0) {
+            BotService.startChat().then((msg: Message) => {
                 addMsg(msg);
                 setShowTyping(false);
             });
         } else {
-            const lastMsg: MessageType = msgList[msgList.length - 1];
-            if (lastMsg.sender == "Agent") {
+            const lastMsg: Message = msgList[msgList.length - 1];
+            if (lastMsg.sender === MessageSenderType.Agent) {
                 setShowTyping(false);
                 return;
             }
 
-            BotService.getAnswer(lastMsg.text).then((msg: MessageType) => {
+            BotService.getAnswer(lastMsg.text).then((msg: Message) => {
                 addMsg(msg);
                 setShowTyping(false);
             });
         }
-    }, [msgList]);
+    }, [addMsg, msgList]);
 
     return (
         <div className="container">
             <Header resetChat={() => resetChat()} />
             <Content showTyping={showTyping} msgList={msgList} />
-            <Footer sendMsg={(msg: MessageType) => addMsg(msg)} />
+            <Footer sendMsg={(msg: Message) => addMsg(msg)} />
         </div>
     );
 }

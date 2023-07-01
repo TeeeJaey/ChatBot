@@ -5,7 +5,7 @@ type Props = {
     resetChat: Function;
 };
 
-export default function Header(props: Props) {
+export default function Header(props: Props): JSX.Element {
     return (
         <div className="header-footer header">
             <FaRobot className="chat-icon" />

@@ -1,17 +1,16 @@
-import { Data, MessageType } from "./Types";
-import { DataSet, WebDataSet, WikiDataSet } from "./DataSet";
+import { Data, Message } from "../helpers/Types";
+import { DataSet, WebDataSet, WikiDataSet } from "../helpers/DataSet";
 import { WikiService } from "./WikiService";
 import { MessageService } from "./MessageService";
+import { WebLinks } from "../helpers/Constants";
 
 export class BotService {
     static delayMsg(msg: string, server = "Bot", sec: number = 1000) {
-        return new Promise<MessageType>(
-            (resolve: Function, reject: Function) => {
-                setTimeout(() => {
-                    resolve(MessageService.createAgentMsg(msg, server));
-                }, sec);
-            },
-        );
+        return new Promise<Message>(resolve => {
+            setTimeout(() => {
+                resolve(MessageService.createAgentMsg(msg, server));
+            }, sec);
+        });
     }
 
     static openWebpage(weburl: string, search: string, sec: number = 2000) {
@@ -35,7 +34,7 @@ export class BotService {
         for (let i = 0; i < DataSet.length; i++) {
             const x: Data = DataSet[i];
             if (x.q.includes(question)) {
-                if (i == 0) return this.delayMsg(x.a[0], "Developer");
+                if (i === 0) return this.delayMsg(x.a[0], "Developer");
                 const index = Math.floor(Math.random() * x.a.length);
                 return this.delayMsg(x.a[index]);
             }
@@ -52,7 +51,7 @@ export class BotService {
                     const ans = await WikiService.fetchData(search);
                     if (ans) return this.delayMsg(ans, "Wiki");
                     else {
-                        this.openWebpage("google.com/search?q=", search);
+                        this.openWebpage(WebLinks.googleQuery, search);
                         return this.delayMsg("Let me check online...", "Web");
                     }
                 }
@@ -64,12 +63,12 @@ export class BotService {
         for (let i = 0; i < WebDataSet.length; i++) {
             const x: Data = WebDataSet[i];
 
-            if (i == 0) {
+            if (i === 0) {
                 // Google Search
                 for (let i = 0; i < x.q.length; i++) {
                     if (question.startsWith(x.q[i])) {
                         const search = question.split(x.q[i])[1].trim();
-                        this.openWebpage("google.com/search?q=", search);
+                        this.openWebpage(WebLinks.googleQuery, search);
 
                         const index = Math.floor(Math.random() * 2);
                         return this.delayMsg(x.a[index], "Web");
@@ -80,13 +79,13 @@ export class BotService {
             let search: string = question;
 
             if (WebDataSet[i].q.includes(question)) {
-                let weburl = "google.com/search?q=";
+                let weburl = WebLinks.googleQuery;
 
-                if (i == 1) search = "order food online";
-                if (i == 2) search = "book movie";
-                if (i == 3) search = "stream online";
-                if (i == 4) {
-                    weburl = "netflix.com";
+                if (i === 1) search = "order food online";
+                else if (i === 2) search = "book movie";
+                else if (i === 3) search = "stream online";
+                else if (i === 4) {
+                    weburl = WebLinks.netflix;
                     search = "";
                 }
 

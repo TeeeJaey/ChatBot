@@ -15,6 +15,10 @@ export const DataSet: Data[] = [
             "who developed you",
             "who is ur developer",
             "who is your developer",
+            "who is your daddy",
+            "whose your daddy",
+            "whose yur daddy",
+            "who is your father",
         ],
         a: ["I was created by a Software developer, Tejas Jadhav."],
     },
@@ -90,6 +94,10 @@ export const DataSet: Data[] = [
             "i want to hear a joke",
             "another joke",
             "joke",
+            "a joke",
+            "joke please",
+            "a joke please",
+            "another joke",
         ],
         a: [
             "What goes up and down but does not move? \n \n ... Stairs",
@@ -115,8 +123,7 @@ export const DataSet: Data[] = [
             "Why was the belt arrested? \n ... Because it held up some pants!",
             "Why was everyone so tired on April 1st? \n ... They had just finished a March of 31 days.",
             "Which hand is it better to write with? \n ... Neither, it's best to write with a pen!",
-            "Why can't your nose be 12 inches long? ",
-            " \n ... Because then it would be a foot!",
+            "Why can't your nose be 12 inches long? \n ... Because then it would be a foot!",
             "What makes the calendar seem so popular? \n ... Because it has a lot of dates!",
             "Why did Mickey Mouse take a trip into space? \n ... He wanted to find Pluto!",
             "What is green and has yellow wheels? \n ... Grass…..I lied about the wheels! ",
@@ -126,12 +133,14 @@ export const DataSet: Data[] = [
             "Why did Billy go out with a prune? \n ... Because he couldn't find a date!",
             "Why do eskimos do their laundry in Tide? \n ... Because it's too cold out-tide!",
             "How do you cure a headache? \n ... Put your head through a window and the pane will just disappear!",
-            "What has four wheels and flies? ",
-            " \n ... A garbage truck!",
+            "What has four wheels and flies?  \n ... A garbage truck!",
             "What kind of car does Mickey Mouse's wife drive? \n ... A minnie van!",
             "Why don't traffic lights ever go swimming? \n ... Because they take too long to change!",
             "Why did the man run around his bed? \n ... To catch up on his sleep! ",
             "Why did the robber take a bath before he stole from the bank? \n ... He wanted to make a clean get away",
+            "What do sea monsters eat? \n ... Fish and ships!",
+            "What do a tick and the Eiffel tower have in common?? \n ... They are both Paris sites!",
+            "The past, present, and future walk into a bar.\n It got a little tense",
         ],
     },
 ];
@@ -139,7 +148,7 @@ export const DataSet: Data[] = [
 export const WikiDataSet: Data[] = [
     {
         q: ["what's a ", "whats a ", "who is ", "what is a ", "what is ", "whats ", "what's ", "tell me about "],
-        a: ["Wiki: "],
+        a: [""],
     },
 ];
 

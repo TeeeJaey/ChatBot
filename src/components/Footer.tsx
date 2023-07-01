@@ -6,11 +6,11 @@ type Props = {
     sendMsg: Function;
 };
 
-export default function Footer(props: Props) {
+export default function Footer(props: Props): JSX.Element {
     const [msg, setMsg] = useState("");
 
     const _handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key == "Enter") sendMsg();
+        if (e.key === "Enter") sendMsg();
     };
 
     const sendMsg = () => {

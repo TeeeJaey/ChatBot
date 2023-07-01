@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-import Message from "./Message";
+import React, { useEffect, useRef } from "react";
+import MessageBlob from "./MessageBlob";
 import "../styles/Content.css";
-import { MessageType } from "../services/Types";
+import { Message } from "../helpers/Types";
 
 //import * as img from "../images/typing.gif";
 //const typing = img.default;
-const typing = require("../images/typing.gif");
+const typing = require("../assets/typing.gif");
 
 type Props = {
     showTyping: Boolean;
-    msgList: MessageType[];
+    msgList: Message[];
 };
 
-export default function Content(props: Props) {
+export default function Content(props: Props): JSX.Element {
     const endRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -21,8 +21,8 @@ export default function Content(props: Props) {
 
     return (
         <div className="content">
-            {props.msgList.map((msg: MessageType, i) => (
-                <Message i={i} key={i} msg={msg} />
+            {props.msgList.map((msg: Message, i) => (
+                <MessageBlob key={i} index={i} msg={msg} />
             ))}
 
             {props.showTyping && <img src={typing} className="typing-gif" alt="typing..." />}

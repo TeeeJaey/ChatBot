@@ -1,7 +1,7 @@
 # ChatBot
 
 A chatting assistant written in React.
-Live [here](https://teeejaey.github.io/ChatBot-Live/) 
+Run Live [here](https://teeejaey.github.io/ChatBot-Live/)
 
 ## Available Scripts
 
