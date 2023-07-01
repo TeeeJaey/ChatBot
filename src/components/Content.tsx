@@ -2,10 +2,7 @@ import React, { useEffect, useRef } from "react";
 import MessageBlob from "./MessageBlob";
 import "../styles/Content.css";
 import { Message } from "../helpers/Types";
-
-//import * as img from "../images/typing.gif";
-//const typing = img.default;
-const typing = require("../assets/typing.gif");
+import typing from "../assets/typing.gif";
 
 type Props = {
     showTyping: Boolean;
