@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ChatBot/static/css/main.eaa4ae5e.css",
-    "main.js": "/ChatBot/static/js/main.5bb6ccf0.js",
+    "main.js": "/ChatBot/static/js/main.e645a9d0.js",
     "static/media/typing.gif": "/ChatBot/static/media/typing.77ebdfc746944a5500b8.gif",
     "index.html": "/ChatBot/index.html",
     "main.eaa4ae5e.css.map": "/ChatBot/static/css/main.eaa4ae5e.css.map",
-    "main.5bb6ccf0.js.map": "/ChatBot/static/js/main.5bb6ccf0.js.map"
+    "main.e645a9d0.js.map": "/ChatBot/static/js/main.e645a9d0.js.map"
   },
   "entrypoints": [
     "static/css/main.eaa4ae5e.css",
-    "static/js/main.5bb6ccf0.js"
+    "static/js/main.e645a9d0.js"
   ]
 }
