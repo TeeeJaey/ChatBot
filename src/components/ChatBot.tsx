@@ -3,7 +3,7 @@ import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
 import { Message } from "../helpers/Types";
-import { BotService } from "../services/BotService";
+import { BotService } from "../services";
 import { MessageSenderType } from "../helpers/Constants";
 
 const initMsgList: Message[] = [];

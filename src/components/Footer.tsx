@@ -1,12 +1,12 @@
 import React, { KeyboardEvent, useState } from "react";
 import { FaUser } from "react-icons/fa";
-import { MessageService } from "../services/MessageService";
+import { MessageService } from "../services";
 
-type Props = {
+type FooterProps = {
     sendMsg: Function;
 };
 
-export default function Footer(props: Props): JSX.Element {
+export default function Footer(props: FooterProps): JSX.Element {
     const [msg, setMsg] = useState("");
 
     const _handleKeyDown = (e: KeyboardEvent) => {
@@ -23,7 +23,13 @@ export default function Footer(props: Props): JSX.Element {
     return (
         <div className="header-footer footer">
             <FaUser className="chat-icon" />
-            <input className="chat-input" type="text" value={msg} onChange={e => setMsg(e.target.value)} onKeyDown={e => _handleKeyDown(e)} />
+            <input
+                className="chat-input"
+                type="text"
+                value={msg}
+                onChange={e => setMsg(e.target.value)}
+                onKeyDown={e => _handleKeyDown(e)}
+            />
             <button className="chat-btn" onClick={() => sendMsg()}>
                 SEND
             </button>

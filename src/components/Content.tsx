@@ -4,25 +4,25 @@ import "../styles/Content.css";
 import { Message } from "../helpers/Types";
 import typing from "../assets/typing.gif";
 
-type Props = {
+type ContentProps = {
     showTyping: Boolean;
     msgList: Message[];
 };
 
-export default function Content(props: Props): JSX.Element {
+export default function Content({ msgList, showTyping }: ContentProps): JSX.Element {
     const endRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         endRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [props.msgList]);
+    }, [msgList]);
 
     return (
         <div className="content">
-            {props.msgList.map((msg: Message, i) => (
+            {msgList.map((msg: Message, i) => (
                 <MessageBlob key={i} index={i} msg={msg} />
             ))}
 
-            {props.showTyping && <img src={typing} className="typing-gif" alt="typing..." />}
+            {showTyping && <img src={typing} className="typing-gif" alt="typing..." />}
             <div ref={endRef} />
         </div>
     );

@@ -5,7 +5,7 @@ import { MessageService } from "./MessageService";
 import { WebLinks } from "../helpers/Constants";
 
 export class BotService {
-    static delayMsg(msg: string, server = "Bot", sec: number = 1000) {
+    static delayMsg(msg: string, server = "Bot", sec: number = 1000): Promise<Message> {
         return new Promise<Message>(resolve => {
             setTimeout(() => {
                 resolve(MessageService.createAgentMsg(msg, server));
@@ -19,11 +19,11 @@ export class BotService {
         }, sec);
     }
 
-    static startChat() {
+    static startChat(): Promise<Message> {
         return this.delayMsg("Hi, How can I help you today?");
     }
 
-    static async getAnswer(question: string) {
+    static async getAnswer(question: string): Promise<Message> {
         question = question.replaceAll(".", "");
         question = question.replaceAll("!", "");
         question = question.replaceAll("?", "");

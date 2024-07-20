@@ -1,16 +1,16 @@
 import React from "react";
 import { FaRobot } from "react-icons/fa";
 
-type Props = {
+type HeaderProps = {
     resetChat: Function;
 };
 
-export default function Header(props: Props): JSX.Element {
+export default function Header({ resetChat }: HeaderProps): JSX.Element {
     return (
         <div className="header-footer header">
             <FaRobot className="chat-icon" />
             <div className="header-content"> Your Chat Assistant</div>
-            <button className="chat-btn" onClick={() => props.resetChat()}>
+            <button className="chat-btn" onClick={() => resetChat()}>
                 RESET
             </button>
         </div>

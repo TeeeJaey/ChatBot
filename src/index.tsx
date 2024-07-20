@@ -5,9 +5,7 @@ import ChatBot from "./components/ChatBot";
 
 ReactDOM.render(
     <React.StrictMode>
-        <div>
-            <ChatBot />
-        </div>
+        <ChatBot />
     </React.StrictMode>,
     document.getElementById("root"),
 );

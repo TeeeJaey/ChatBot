@@ -2,17 +2,17 @@ import React from "react";
 import { FaUser } from "react-icons/fa";
 import { FaRobot } from "react-icons/fa";
 import { GrLinkedinOption, GrGithub } from "react-icons/gr";
-import { BotService } from "../services/BotService";
+import { BotService } from "../services";
 import { Message } from "../helpers/Types";
 import { MessageSenderType, WebLinks } from "../helpers/Constants";
 import { formatDateTimeToShow } from "../helpers/Formatter";
 
-type Props = {
+type MessageBlobProps = {
     index: number;
     msg: Message;
 };
 
-export default function MessageBlob({ msg, index }: Props): JSX.Element {
+export default function MessageBlob({ msg, index }: MessageBlobProps): JSX.Element {
     const showdate = formatDateTimeToShow(msg.time);
     const linkedInUserName = "tejas-jadhav-765043110";
     const gitHubUserName = "TeeeJaey";
@@ -32,7 +32,10 @@ export default function MessageBlob({ msg, index }: Props): JSX.Element {
                                 className="link linkedin"
                                 onClick={() => BotService.openWebpage(WebLinks.linkedIn, linkedInUserName, 0)}
                             />
-                            <GrGithub className="link github" onClick={() => BotService.openWebpage(WebLinks.github, gitHubUserName, 0)} />
+                            <GrGithub
+                                className="link github"
+                                onClick={() => BotService.openWebpage(WebLinks.github, gitHubUserName, 0)}
+                            />
                         </div>
                     )}
                     <div className="time"> {showdate} </div>
